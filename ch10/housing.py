@@ -5,7 +5,15 @@
 @Author: tyee.noprom@qq.com
 @Time: 4/11/16
 '''
-import pandas as pd
-df = pd.read_csv('./housing.data', header = None, sep = '\s+')
-df.columns = ['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT', 'MEDV']
-print(df.head())
+
+def look_data():
+    '''
+    查看数据
+    :return:
+    '''
+    import pandas as pd
+    df = pd.read_csv('./housing.data', header = None, sep = '\s+')
+    df.columns = ['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT', 'MEDV']
+    print(df.head())
+
+look_data()
