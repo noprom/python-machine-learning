@@ -42,6 +42,7 @@ def corelation_data():
     hm = sns.heatmap(cm, cbar=True, annot=True, fmt='.2f', annot_kws={'size': 15}, yticklabels=cols, xticklabels=cols)
     plt.show()
 
+
 look_data()
 visualize_data()
 corelation_data()
