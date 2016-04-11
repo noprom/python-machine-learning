@@ -27,7 +27,6 @@ def look_data():
 def visualize_data():
     '''
     可视化数据
-    :return:
     '''
     sns.set(style='whitegrid', context='notebook')
     sns.pairplot(df[cols], size=2.5)
@@ -37,12 +36,11 @@ def visualize_data():
 def corelation_data():
     '''
     发现数据之间的关联关系
-    :return:
     '''
     cm = np.corrcoef(df[cols].values.T)
     sns.set(font_scale=1.5)
     hm = sns.heatmap(cm, cbar=True, annot=True, fmt='.2f', annot_kws={'size': 15}, yticklabels=cols, xticklabels=cols)
-
+    plt.show()
 
 look_data()
 visualize_data()
