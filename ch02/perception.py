@@ -6,6 +6,10 @@
 @Time: 4/12/16 3:13 PM
 '''
 import numpy as np
+import pandas as pd
+
+df = pd.read_csv('./iris.data', header=None)
+print(df.tail())
 
 
 class Perception(object):
