@@ -9,19 +9,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv('./iris.data', header=None)
-y = df.iloc[0:100, 4].values  # 取出第四列分类数据
-y = np.where(y == 'Iris-setosa', -1, 1)
-X = df.iloc[0:100, [0, 2]].values
-plt.scatter(X[:50, 0], X[:50, 1], color='red', marker='o', label='setosa')
-plt.scatter(X[50:100, 0], X[50:100, 1], color='blue', marker='x', label='versicolor')
-plt.xlabel('petal length')
-plt.ylabel('sepal length')
-plt.legend(loc='upper left')
-plt.show()
 
-
-class Perception(object):
+class Perceptron(object):
     """Perception classifier
         Parameters
     ------------
@@ -73,3 +62,24 @@ class Perception(object):
     def predict(self, X):
         """Return class label after unit step"""
         return np.where(self.net_input(X) >= 0.0, 1, -1)
+
+
+# 处理数据并且可视化
+df = pd.read_csv('./iris.data', header=None)
+y = df.iloc[0:100, 4].values  # 取出第四列分类数据
+y = np.where(y == 'Iris-setosa', -1, 1)
+X = df.iloc[0:100, [0, 2]].values
+plt.scatter(X[:50, 0], X[:50, 1], color='red', marker='o', label='setosa')
+plt.scatter(X[50:100, 0], X[50:100, 1], color='blue', marker='x', label='versicolor')
+plt.xlabel('petal length')
+plt.ylabel('sepal length')
+plt.legend(loc='upper left')
+plt.show()
+
+# 开始分类
+ppn = Perceptron(eta=0.1, n_iter=10)
+ppn.fit(X, y)
+plt.plot(range(1, len(ppn.errors_) + 1), ppn.errors_, marker='o')
+plt.xlabel('Epochs')
+plt.ylabel('Number of misclassifications')
+plt.show()
