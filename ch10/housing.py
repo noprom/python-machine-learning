@@ -130,6 +130,9 @@ def ransac_fit(X, y):
                              residual_threshold=5.0,
                              random_state=0)
     ransac.fit(X, y)
+    # 输出斜率|截距等数据
+    print('Slope: %.3f' % ransac.estimator_.coef_[0])
+    print('Intercept: %.3f' % ransac.estimator_.intercept_)
     # plot
     inlier_mask = ransac.inlier_mask_
     outlier_mask = np.logical_not(inlier_mask)
@@ -146,8 +149,46 @@ def ransac_fit(X, y):
     plt.show()
 
 
+def multi_regression():
+    '''
+    多元回归
+    :return:
+    '''
+    from sklearn.cross_validation import train_test_split
+    X = df.iloc[:, :-1].values
+    y = df['MEDV'].values
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+    slr = LinearRegression()
+    slr.fit(X_train, y_train)
+    y_train_pred = slr.predict(X_train)
+    y_test_pred = slr.predict(X_test)
+    # 计算Mean Squared Error (MSE)
+    from sklearn.metrics import mean_squared_error
+    print('MSE train: %.3f, test: %.3f' % (
+        mean_squared_error(y_train, y_train_pred),
+        mean_squared_error(y_test, y_test_pred)))
+    # MSE train: 19.958, test: 27.196 => over fitting
+
+    # 计算R*R
+    # If R*R =1, the model  ts the data perfectly with a corresponding MSE = 0 .
+    from sklearn.metrics import r2_score
+    print('R^2 train: %.3f, test: %.3f' % (r2_score(y_train, y_train_pred), r2_score(y_test, y_test_pred)))
+
+
+    # plot
+    plt.scatter(y_train_pred, y_train_pred - y_train, c='blue', marker='o', label='Training data')
+    plt.scatter(y_test_pred, y_test_pred - y_test, c='lightgreen', marker='s', label='Test data')
+    plt.xlabel('Predicted values')
+    plt.ylabel('Residuals')
+    plt.legend(loc='upper left')
+    plt.hlines(y=0, xmin=-10, xmax=50, lw=2, color='red')
+    plt.xlim([-10, 50])
+    plt.show()
+
+
 # look_data()
 # visualize_data()
 # corelation_data()
 # linear_model()
-ransac_fit(X, y)
+# ransac_fit(X, y)
+multi_regression()
