@@ -10,6 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+
 class LinearRegressionGD(object):
     '''
     线性回归模型,梯度下降
@@ -92,6 +93,24 @@ def linear_model():
     plt.ylabel('SSE')
     plt.xlabel('Epoch')
     plt.show()
+    # RM与MEDV关系图
+    lin_regplot(X_std, y_std, lr)
+    plt.xlabel('Average number of rooms [RM] (standardized)')
+    plt.ylabel('Price in $1000\'s [MEDV] (standardized)')
+    plt.show()
+
+
+def lin_regplot(X, y, model):
+    '''
+    画线性关系图
+    :param X:
+    :param y:
+    :param model:
+    :return:
+    '''
+    plt.scatter(X, y, c='blue')
+    plt.plot(X, model.predict(X), color='red')
+    return None
 
 
 look_data()
