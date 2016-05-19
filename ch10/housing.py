@@ -10,7 +10,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-
 class LinearRegressionGD(object):
     '''
     线性回归模型,梯度下降
@@ -52,7 +51,7 @@ def look_data():
     '''
     df.columns = ['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT',
                   'MEDV']
-    print(df.head())
+    # print(df.head())
 
 
 def visualize_data():
@@ -95,7 +94,7 @@ def linear_model():
     plt.show()
 
 
-# look_data()
+look_data()
 # visualize_data()
 # corelation_data()
 linear_model()
