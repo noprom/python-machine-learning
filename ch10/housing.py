@@ -305,6 +305,23 @@ def log_feature():
     plt.show()
 
 
+def decision_tree_regression():
+    '''
+    决策树
+    :return:
+    '''
+    from sklearn.tree import DecisionTreeRegressor
+    X = df[['LSTAT']].values
+    y = df['MEDV'].values
+    tree = DecisionTreeRegressor(max_depth=3)
+    tree.fit(X, y)
+    sort_idx = X.flatten().argsort()
+    lin_regplot(X[sort_idx], y[sort_idx], tree)
+    plt.xlabel('% lower status of the population [LSTAT]')
+    plt.ylabel('Price in $1000\'s [MEDV]')
+    plt.show()
+
+
 # look_data()
 # visualize_data()
 # corelation_data()
@@ -314,3 +331,4 @@ def log_feature():
 # polynomial_regression()
 # housing_polynomial_regression()
 # log_feature()
+decision_tree_regression()
