@@ -10,7 +10,7 @@ from sklearn import datasets
 from sklearn.cross_validation import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import Perceptron
-import numpy as np
+from sklearn.metrics import accuracy_score
 
 iris = datasets.load_iris()
 X = iris.data[:, [2, 3]]
@@ -34,3 +34,4 @@ ppn.fit(X_train_std, y_train)
 y_pred = ppn.predict(X_test_std)
 # 与真实值对比
 print('Misclassified samples: %d' % (y_test != y_pred).sum())
+print('Accuracy: %.2f' % accuracy_score(y_test, y_pred))
