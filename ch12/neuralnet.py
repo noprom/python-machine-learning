@@ -15,6 +15,26 @@ class NeuralNetMLP(object):
                  l1=0.0, l2=0.0, epochs=500, eta=0.001,
                  alpha=0.0, decrease_const=0.0, shuffle=True,
                  minibatches=1, random_state=None):
+        '''
+        3-layer MLP
+        :param n_output:output units
+        :param n_features:input units
+        :param n_hidden:hidden units
+        :param l1: the λ parameter for L1 regularization
+        :param l2:The λ parameter for L2 regularization to decrease the degree of overfitting
+        :param epochs:The number of passes over the training set
+        :param eta:The learning rate η
+        :param alpha:A parameter for momentum learning to add a factor of the previous gradient
+               to the weight update for faster learning ∆wt =η∇J(wt )+α∆wt−1 (where t is
+               the current time step or epoch)
+        :param decrease_const:The decrease constant d for an adaptive learning rate n that
+               decreases over time for better convergence η / 1 + t × d
+        :param shuffle:Shuffling the training set prior to every epoch to prevent the algorithm from getting stuck in cycles
+        :param minibatches:Splitting of the training data into k mini-batches in each epoch. The gradient is computed for
+               each mini-batch separately instead of the entire training data for faster learning
+        :param random_state:
+        :return:
+        '''
         np.random.seed(random_state)
         self.n_output = n_output
         self.n_features = n_features
