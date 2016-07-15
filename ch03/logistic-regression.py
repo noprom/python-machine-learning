@@ -8,7 +8,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-
 def sigmoid(z):
     '''
     sigmoid函数
@@ -36,6 +35,3 @@ def plot_sigmoid():
     plt.xlabel('z')
     plt.ylabel('$\phi (z)$')
     plt.show()
-
-
-plot_sigmoid()
