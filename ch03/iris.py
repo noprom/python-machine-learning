@@ -10,6 +10,7 @@ from sklearn import datasets
 from sklearn.cross_validation import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import Perceptron
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 from matplotlib.colors import ListedColormap
 import matplotlib.pyplot as plt
@@ -91,3 +92,21 @@ def predict_with_perceptron():
     plt.legend(loc='upper left')
     plt.show()
 
+
+def predict_with_logistic_regression():
+    '''
+    使用逻辑回归来进行预测
+    :return:
+    '''
+    lr = LogisticRegression(C=1000.0, random_state=0)
+    lr.fit(X_train_std, y_train)
+    # 绘图
+    X_combined_std = np.vstack((X_train_std, X_test_std))
+    y_combined = np.hstack((y_train, y_test))
+    plot_decision_regions(X_combined_std, y_combined, classifier=lr, test_idx=range(105, 150))
+    plt.xlabel('petal length [standardized]')
+    plt.ylabel('petal width [standardized]')
+    plt.legend(loc='upper left')
+    plt.show()
+
+predict_with_logistic_regression()
