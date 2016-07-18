@@ -8,6 +8,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 def sigmoid(z):
     '''
     sigmoid函数
