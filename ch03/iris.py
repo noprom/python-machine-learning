@@ -133,4 +133,18 @@ def plot_l2_regularization():
     plt.show()
 
 
-plot_l2_regularization()
+# plot_l2_regularization()
+def svm():
+    from sklearn.svm import SVC
+    svm = SVC(kernel='linear', C=1.0, random_state=0)
+    svm.fit(X_train_std, y_train)
+    # 绘图
+    X_combined_std = np.vstack((X_train_std, X_test_std))
+    y_combined = np.hstack((y_train, y_test))
+    plot_decision_regions(X=X_combined_std, y=y_combined, classifier=svm, test_idx=range(105, 150))
+    plt.xlabel('petal length [standardized]')
+    plt.ylabel('petal width [standardized]')
+    plt.legend(loc='upper left')
+    plt.show()
+
+svm()
