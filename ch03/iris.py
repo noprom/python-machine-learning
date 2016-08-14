@@ -135,6 +135,10 @@ def plot_l2_regularization():
 
 # plot_l2_regularization()
 def svm():
+    '''
+    使用svm对iris数据进行分类
+    :return:
+    '''
     from sklearn.svm import SVC
     svm = SVC(kernel='linear', C=1.0, random_state=0)
     svm.fit(X_train_std, y_train)
@@ -146,5 +150,6 @@ def svm():
     plt.ylabel('petal width [standardized]')
     plt.legend(loc='upper left')
     plt.show()
+
 
 svm()
